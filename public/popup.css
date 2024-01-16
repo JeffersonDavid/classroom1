@@ -1,0 +1,44 @@
+.popup {
+    position: fixed;
+    top: 20%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    opacity: 1; /* Inicialmente transparente */
+    transition: opacity 1s ease;
+    
+}
+
+.popup.hidden {
+    opacity: 0;
+}
+
+/* Animación para aparecer y desaparecer */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    20%, 80% {
+        opacity: 1;
+    }
+}
+
+
+
+.fadeout {
+    opacity: 1;
+    transition: opacity 1s ease; /* Transición suave durante 1 segundo */
+}
+
+/* Aplicar el fade-out */
+.fadeout.hidden {
+    opacity: 0;
+}
+
+
+.hidden{
+    display: none;
+}

@@ -146,9 +146,8 @@ class AppController
         $adminPage = $_GET['adminPage'] ?? 'default';
 
         if ($adminPage === 'products') {
-
-            $_SESSION['productos'] = $this->model->getProducts();
-            header('Location: Vista/adminProducts.php');
+        
+             $this->showView('adminProducts', ['productos' =>  $this->model->getProducts() ]);
             
         } else {
 

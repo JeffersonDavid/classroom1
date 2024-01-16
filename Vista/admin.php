@@ -8,7 +8,8 @@ require './Utils/validator.php'
 <head>
     <meta charset="UTF-8">
     <title>Adminstrador</title>
-    <link rel="stylesheet" href="./public//style.css">
+    <link rel="stylesheet" href="./public/style.css">
+    <link rel="stylesheet" href="./public/popup.css">
 </head>
 <body>
 
@@ -27,6 +28,8 @@ require './Utils/validator.php'
             <a class="logout-btn" href="./../index.php"> Logout </a>
         </div>
 </nav>
+
+
 
 
 <div style="padding: 10px;">

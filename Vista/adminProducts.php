@@ -1,5 +1,5 @@
 <?php
-require '../Utils/validator.php';
+require './Utils/validator.php';
 ?>
 
 <!DOCTYPE html>
@@ -7,14 +7,14 @@ require '../Utils/validator.php';
 <head>
     <meta charset="UTF-8">
     <title>Administrador</title>
-    <link rel="stylesheet" href="../public//style.css">
+    <link rel="stylesheet" href="./public/style.css">
 </head>
 <body>
 
     <nav>
         <div>
-            <a href="./../index.php?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de usuarios</a>
-            <a href="./../index.php?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de productos</a>
+            <a href="./?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de usuarios</a>
+            <a href="./?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de productos</a>
         </div>
 
         <div>
@@ -39,7 +39,7 @@ require '../Utils/validator.php';
             // Supongamos que tienes un array de datos en PHP
 
             // Iterar sobre el array y mostrar los datos en la tabla
-            foreach ($productos as $index => $product) {
+            foreach ( $productos as $index => $product ) {
                 echo "<tr>";
                 echo "<td>{$product['nombre']}</td>";
                 echo "<td>{$product['precio']}</td>";
