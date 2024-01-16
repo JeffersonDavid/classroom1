@@ -17,18 +17,12 @@ class ModelAdd
             case 'users':
                 echo $this->generateUserForm();
                 break;
-            
             case 'products':
-                    # code...
+                echo $this->generateProductForm();
                 break;
             default:
-                # code...
                 break;
-        }
-
-
-
-        
+        }        
     }
 
     private function generateUserForm()
@@ -48,6 +42,7 @@ class ModelAdd
         // Formulario de usuario
         return <<<HTML
             <form action="index.php?page=model-add&model_type=users" method="post">
+            <h3>Crear un usuario</h3>
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" placeholder="Escriba aquí su nombre" required>
 
@@ -67,6 +62,29 @@ class ModelAdd
             </form>
         HTML;
     }
+
+
+
+    private function generateProductForm()
+    {
+        
+         // Formulario de usuario
+         return <<<HTML
+             <form action="procesar_insercion.php" method="post">
+                <h3>Crear un producto</h3>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="precio">Precio:</label>
+                <input type="number" id="precio" name="precio" step="0.01" required>
+
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion"></textarea>
+
+                <input type="submit" name="insertar" value="Insertar Producto">
+            </form>
+         HTML;
+     }
 
 
    

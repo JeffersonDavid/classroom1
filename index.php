@@ -9,4 +9,4 @@ $conn = new DatabaseService();
 $app_model = new App( $conn );
 
 $model = new AppController( $app_model );
-$model = $model->handleRequest();
+$model->handleRequest();
