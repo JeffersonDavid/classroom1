@@ -15,7 +15,7 @@ require './Utils/validator.php'
 
 
 
-<div style='width:100%'>
+<div style='padding: 10px; width:90%'>
 
 <nav>
         <div>
@@ -25,7 +25,7 @@ require './Utils/validator.php'
         <div>
             <span class="usuario-info">Usuario: <?php echo isset($user_data['email']) ? $user_data['email'] : '' ?> </span>
             
-            <a class="logout-btn" href="./../index.php"> Logout </a>
+            <a class="logout-btn" href="./Vista/logout.php">Logout</a>
         </div>
 </nav>
 
