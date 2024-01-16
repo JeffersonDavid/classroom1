@@ -24,18 +24,15 @@ class App {
     {
         // Hash del password (asegúrate de usar un método seguro en un entorno de producción)
         $hashedPassword = base64_encode($password);
-
         // Crear una nueva instancia de PDOStatement para ejecutar la inserción
         $stmt = $this->databaseService->connection->prepare("INSERT INTO usuarios (name, email, password, role) VALUES (?, ?, ?, ?)");
-        
         // Ejecutar la consulta preparada con los valores correspondientes
         $stmt->execute([$username, $email, $hashedPassword, $role]);
-
         $inserted_user = $this->databaseService->connection->lastInsertId();
-
         // Devolver el ID del nuevo usuario insertado
         return $inserted_user;
     }
+
 
       /**
      * @param string $email

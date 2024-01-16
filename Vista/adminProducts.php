@@ -41,6 +41,7 @@
                     <td>
                         <a class="button" href="./?page=show-edit-product&product_id=<?= $product['id'] ?>">Editar producto</a>
                         <a class='buttonred' href='./index.php?page=product-delete&product_id=<?= $product['id'] ?>'> Borrar </a>
+                        <a class='buttonblue' href='./index.php?page=show-add&model_type=products'> Crear </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

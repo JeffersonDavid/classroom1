@@ -55,10 +55,57 @@ class AppController
                 $this->handleProductDeletion();
                 break;
 
+            case 'show-add':
+                    $this->showAddToDatabaseFromModel();
+                    break;
+
+            case 'model-add':
+                    $this->addToDatabaseFromModel();
+                    break;
+
             default:
                 $this->showView('login');
                 break;
         }
+    }
+
+
+
+    private function addToDatabaseFromModel(){
+
+
+        $type = $_REQUEST['model_type'] ?? '';
+        $user_params = $this->userParams();
+
+        
+        switch ($type) {
+
+            case 'users':
+                $existUser = $this->model->userByEmail($user_params['email']);
+                if (!$existUser) {
+                    $this->model->createUser( $user_params['name'], $user_params['email'], $user_params['password'],$user_params['role']);
+                    $this->showView('add', ['type' => $type , 'message' => 'Usuario creado correctamente']);
+                    exit;
+                }
+                    $this->showView('add', ['type' => $type , 'message'=>'El email ya esta registrado']);
+            break;
+
+            case 'products':
+
+
+      
+            break;
+            default:
+            $this->showView('404');
+            break;
+        }
+
+    }
+
+    private function showAddToDatabaseFromModel()
+    {
+        $type = $_REQUEST['model_type'] ?? '';
+        $this->showView('add', ['type' => $type ]);
     }
 
     private function handleProductDeletion()

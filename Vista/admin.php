@@ -57,6 +57,8 @@ require './Utils/validator.php'
 
                             <a class='button' href='./index.php?page=show-user-edit&user_id=" . $user['id'] . "'> Editar </a>
                             <a class='buttonred' href='./index.php?page=user-delete&user_id=" . $user['id'] . "'> Borrar </a>
+                            <a class='buttonblue' href='./index.php?page=show-add&model_type=users'> Añadir </a>
+
 
                          </td>";
 
