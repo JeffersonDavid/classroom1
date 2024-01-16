@@ -9,6 +9,7 @@ $producto = $product_data;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
+    <link rel="stylesheet" href="./public/popup.css">
 
     <!-- Agrega estilos CSS aquí -->
     <style>
@@ -126,25 +127,27 @@ $producto = $product_data;
  
 <nav>
         <div>
-        <a href="?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de Usuarios</a>
-        <a href="?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de Posts</a>
+        <a href="?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de usuarios</a>
+        <a href="?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de productos </a>
         </div>
         <div>
             <span class="usuario-info">Usuario: <?php echo isset($user_data['email']) ? $user_data['email'] : '' ?> </span>
             
-            <a class="logout-btn" href="./../index.php"> Logout </a>
+            <a class="logout-btn" href="./Vista/logout.php"> Logout </a>
         </div>
 </nav>
 
 
 <div style="margin: 4%">
-    <a href="Vista/adminProducts.php" class="volver-atras">&larr; Volver a productos </a>
+    <a href="?page=admin" class="volver-atras">&larr; Volver </a>
 </div>
 
 
-<div class="alert-container">
-    <p class="alert-message"><?php echo isset($data_view['message']) ? $data_view['message'] : ''; ?></p>
-</div>
+<?php if (isset($data_view['message'])): ?>
+    <div class="popup" id="myPopup">
+        <p class="alert-message"><?php echo htmlspecialchars($data_view['message']); ?></p>
+    </div>
+<?php endif; ?>
 
 
 <form action="?page=edit-product&product_id=<?php echo isset($producto['id']) ? $producto['id'] : 'undefined'; ?>" method="post" style="margin-top:5%">
@@ -167,4 +170,5 @@ $producto = $product_data;
             <input type="submit" value="Guardar Cambios">
     </form>
 </body>
+<script src="./public/js/app.js"></script>
 </html>

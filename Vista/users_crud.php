@@ -18,17 +18,17 @@ require './Utils/validator.php';
 
 <nav>
     <div>
-        <a href="?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de Usuarios</a>
-        <a href="?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de Posts</a>
+        <a href="?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de usuarios</a>
+        <a href="?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de productos</a>
     </div>
     <div>
         <span class="usuario-info">Usuario: <?php echo isset($user_data['email']) ? htmlspecialchars($user_data['email']) : '' ?> </span>
-        <a class="logout-btn" href="./../index.php">Logout</a>
+        <a class="logout-btn" href="./Vista/logout.php">Logout</a>
     </div>
 </nav>
 
 <div style="margin: 4%">
-    <a href="?page=admin" class="volver-atras">&larr; Volver a gestión de usuarios </a>
+    <a href="?page=admin" class="volver-atras">&larr; Volver </a>
 </div>
 
 <?php if (isset($message)): ?>

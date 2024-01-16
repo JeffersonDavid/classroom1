@@ -24,13 +24,13 @@ class NavBarComponent
         
         <nav>
                 <div>
-                <a href="./../index.php?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de Usuarios</a>
-                <a href="./../index.php?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de Posts</a>
+                <a href="./?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de Usuarios</a>
+                <a href="./?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de Posts</a>
                 </div>
                 <div>
                     <span class="usuario-info">Usuario: <?php echo isset($user_data['email']) ? $user_data['email'] : '' ?> </span>
                     
-                    <a class="logout-btn" href="./../index.php"> Logout </a>
+                    <a class="logout-btn" href="./Vista/logout.php"> Logout </a>
                 </div>
         </nav>
         <?php

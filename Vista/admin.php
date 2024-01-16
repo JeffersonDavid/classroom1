@@ -45,8 +45,6 @@ require './Utils/validator.php'
         </thead>
         <tbody>
             <?php
-                // Supongamos que tienes un array de datos en PHP
-                
         
                 // Iterar sobre el array y mostrar los datos en la tabla
                 foreach ( $users as $index => $user ) {
