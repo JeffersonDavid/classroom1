@@ -91,8 +91,12 @@ class AppController
             break;
 
             case 'products':
+            
+                $params = $this->productParams();
 
+                $this->model->createProduct($params);
 
+                $this->showView('add', ['type' => $type , 'message'=>'Producto creado correctamente']);
       
             break;
             default:

@@ -70,16 +70,16 @@ class ModelAdd
         
          // Formulario de usuario
          return <<<HTML
-             <form action="procesar_insercion.php" method="post">
+             <form action="index.php?page=model-add&model_type=products" method="post">
                 <h3>Crear un producto</h3>
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="product_name" required>
 
                 <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" step="0.01" required>
+                <input type="number" id="precio" name="product_price" step="0.01" required>
 
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion"></textarea>
+                <textarea id="descripcion" name="product_desc"></textarea>
 
                 <input type="submit" name="insertar" value="Insertar Producto">
             </form>

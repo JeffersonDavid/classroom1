@@ -170,6 +170,22 @@ class App {
 
     }
 
+    public function createProduct(array $params){
+
+        
+        $sql = "INSERT INTO productos (nombre, precio, descripcion) VALUES (:nombre, :precio, :descripcion)";
+        $stmt =  $this->databaseService->connection->prepare($sql);
+        $stmt->bindParam(':nombre', $params['nombre']);
+        $stmt->bindValue(':precio', $params['precio'], PDO::PARAM_STR);
+        $stmt->bindParam(':descripcion', $params['descripcion']);
+        if ($stmt->execute()) {
+          
+        } else {
+            echo 'Error al insertar el producto.';
+            die();
+        }
+    }
+
 }
  
 
