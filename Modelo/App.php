@@ -59,6 +59,12 @@ class App {
     }
 
 
+    public function deleteUserByID( int $id ) : void {
+        $stmt = $this->databaseService->connection->prepare("DELETE FROM usuarios WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
+
     public function userByID ( int $id ) : array {
         
         $stmt = $this->databaseService->connection->prepare("SELECT * FROM usuarios WHERE id = :id");
@@ -76,23 +82,24 @@ class App {
     }
 
     public function productByID ( int $id ) : array {
-
-        
         $stmt = $this->databaseService->connection->prepare("SELECT * FROM productos WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-
-
         $primerResultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($primerResultado !== false) {
             return $primerResultado;
         }
        
-        throw new \RuntimeException("Usuario no encontrado con ID: $id"); 
+        throw new \RuntimeException("Usuario no encontrado con ID:  $id "); 
     }
 
 
+    public function deleteProductByID( int $id ) : void {
+        $stmt = $this->databaseService->connection->prepare("DELETE FROM productos WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
     
 
 
@@ -109,8 +116,6 @@ class App {
     }
 
     public function updateProduct( array $params ){
-
-       
 
         $id = $params['id'] ?? '';
         $nombre = $params['nombre'] ?? '';
@@ -135,6 +140,7 @@ class App {
             die();
         }
     }
+
 
 
     public function updateUser( array $params ){

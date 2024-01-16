@@ -52,8 +52,16 @@ require './Utils/validator.php'
                     echo "<td>{$user['name']}</td>";
                     echo "<td>{$user['email']}</td>";
                     echo "<td> ". formaRole($user['role'])." </td>";
-                    echo"<td> <a class='button' href='./index.php?page=show-user-edit&user_id=" . $user['id'] . "'> Editar usuario </a> </td>";
+
+                    echo"<td> 
+
+                            <a class='button' href='./index.php?page=show-user-edit&user_id=" . $user['id'] . "'> Editar </a>
+                            <a class='buttonred' href='./index.php?page=user-delete&user_id=" . $user['id'] . "'> Borrar </a>
+
+                         </td>";
+
                     echo "</tr>";
+                    
                 }
             ?>
         </tbody>

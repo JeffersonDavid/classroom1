@@ -1,12 +1,11 @@
 <?php
-
 require 'Conexion.php';
 
 class AppController
 {
     public App $model;
 
-    public function __construct( App $model )
+    public function __construct(App $model)
     {
         $this->model = $model;
     }
@@ -35,53 +34,80 @@ class AppController
             case 'show-edit-product':
                 $this->handleShowEditProduct();
                 break;
-            
+
             case 'edit-product':
                 $this->handleEditProduct();
                 break;
+
             case 'show-user-edit':
-                 $this->handleUserShowEdition();
-                break;  
+                $this->handleUserShowEdition();
+                break;
+
             case 'user-edit':
                 $this->handleUserEdition();
-                break;  
+                break;
+
+            case 'user-delete':
+                $this->handleUserDeletion();
+                break;
+
+            case 'product-delete':
+                $this->handleProductDeletion();
+                break;
+
             default:
                 $this->showView('login');
                 break;
         }
     }
 
+    private function handleProductDeletion()
+    {
+        $params = $this->productParams();
+        $this->model->deleteProductByID($params['id']);
 
-    private function handleUserEdition() {
+        $this->showView('adminProducts', ['productos' =>  $this->model->getProducts()]);
 
+    }
+
+    private function handleUserDeletion()
+    {
+        $user_params = $this->userParams();
+        $this->model->deleteUserByID($user_params['user_id']);
+        $this->showView('admin', ['users' => $this->model->users_all()]);
+
+    }
+
+
+    private function handleUserEdition()
+    {
         $user_params = $this->userParams();
         $this->model->updateUser($user_params);
         $user = $this->model->userByID($user_params['user_id']);
-        $this->showView('users_crud', [ 'user_data_'=> $user , 'message'=> 'Datos actualizados correctamente']);
+        $this->showView('users_crud', ['user_data_' => $user, 'message' => 'Datos actualizados correctamente']);
     }
 
-    private function handleUserShowEdition() {
-
+    private function handleUserShowEdition()
+    {
         $user_params = $this->userParams();
         $user = $this->model->userByID($user_params['user_id']);
-        $this->showView('users_crud', [ 'user_data_'=> $user ]);
+        $this->showView('users_crud', ['user_data_' => $user]);
     }
 
-
-    private function handleEditProduct(){
-
+    private function handleEditProduct()
+    {
         $params = $this->productParams();
-         $this->model->updateProduct($params);
-        $this->handleShowEditProduct(['message'=>'Datos actualizados correctamente']);
+        $this->model->updateProduct($params);
+        $this->handleShowEditProduct(['message' => 'Datos actualizados correctamente']);
     }
 
     private function handleUserCreation()
     {
-        $userParams = $this->userParams();
-        $existUser = $this->model->userByEmail($userParams['email']);
+        $user_params = $this->userParams();
+        $existUser = $this->model->userByEmail($user_params['email']);
 
         if (!$existUser) {
-            $this->model->createUser($userParams['name'], $userParams['email'], $userParams['password']);
+            $this->model->createUser($user_params['name'], $user_params['email'], $user_params['password']);
             $this->showView('login', ['message' => 'Usuario creado correctamente']);
         } else {
             $this->showView('register', ['errmessage' => 'El correo electrónico ya existe']);
@@ -90,10 +116,10 @@ class AppController
 
     private function handleAuthentication()
     {
-        $userParams = $this->userParams();
-        $existUser = $this->model->userByEmail($userParams['email']);
+        $user_params = $this->userParams();
+        $existUser = $this->model->userByEmail($user_params['email']);
 
-        if (!$existUser || !$this->checkUserPass(base64_encode($userParams['password']), $existUser['password'])) {
+        if (!$existUser || !$this->checkUserPass(base64_encode($user_params['password']), $existUser['password'])) {
             $this->showView('login', ['errmessage' => 'Correo o contraseña incorrecta']);
         } else {
             $this->handleSuccessfulAuthentication($existUser);
@@ -117,25 +143,21 @@ class AppController
 
     private function handleAdminAuthentication()
     {
-        $userParams = $this->userParams();
-
         try {
-                $this->defineAdminView();
+            $this->defineAdminView();
         } catch (\Throwable $th) {
             $this->showView('login', ['errmessage' => 'Correo o contraseña incorrecta']);
         }
     }
 
-    private function handleShowEditProduct( $data_view = false )
+    private function handleShowEditProduct($data_view = false)
     {
         $product_params = $this->productParams();
         $product_id = $product_params['id'];
 
         try {
-
             $product_data = $this->model->productByID((int)$product_id);
-            
-            $this->showView('product_crud', ['product_data' => $product_data, 'data_view' => $data_view ]);
+            $this->showView('product_crud', ['product_data' => $product_data, 'data_view' => $data_view]);
         } catch (\Throwable $th) {
             $this->showView('404');
         }
@@ -146,12 +168,9 @@ class AppController
         $adminPage = $_GET['adminPage'] ?? 'default';
 
         if ($adminPage === 'products') {
-        
-             $this->showView('adminProducts', ['productos' =>  $this->model->getProducts() ]);
-            
+            $this->showView('adminProducts', ['productos' =>  $this->model->getProducts()]);
         } else {
-
-           $this->showView('admin', ['users' => $this->model->users_all()]);
+            $this->showView('admin', ['users' => $this->model->users_all()]);
         }
 
         exit;
@@ -189,3 +208,4 @@ class AppController
         ];
     }
 }
+?>

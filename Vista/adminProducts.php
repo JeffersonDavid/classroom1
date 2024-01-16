@@ -38,7 +38,10 @@
                     <td><?= $product['nombre'] ?></td>
                     <td><?= $product['precio'] ?></td>
                     <td><?= $product['descripcion'] ?></td>
-                    <td><a class="button" href="./?page=show-edit-product&product_id=<?= $product['id'] ?>">Editar producto</a></td>
+                    <td>
+                        <a class="button" href="./?page=show-edit-product&product_id=<?= $product['id'] ?>">Editar producto</a>
+                        <a class='buttonred' href='./index.php?page=product-delete&product_id=<?= $product['id'] ?>'> Borrar </a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
