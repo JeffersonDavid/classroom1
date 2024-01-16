@@ -1,7 +1,7 @@
 
 <?php
 
-require '../Utils/validator.php'
+require_once './Utils/validator.php'
 
 ?>
 

@@ -79,7 +79,7 @@ class ModelAdd
                 <input type="number" id="precio" name="product_price" step="0.01" required>
 
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="product_desc"></textarea>
+                <textarea id="descripcion" name="product_desc" required></textarea>
 
                 <input type="submit" name="insertar" value="Insertar Producto">
             </form>

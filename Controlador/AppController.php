@@ -62,24 +62,24 @@ class AppController
             case 'model-add':
                     $this->addToDatabaseFromModel();
                     break;
-
+            case 'user-default':
+                    $this->showView('dashboard', ['productos' => $this->model->getProducts() ]);
+                    break;
+            
             default:
                 $this->showView('login');
                 break;
         }
     }
 
-
+//cliente@cliente.com
 
     private function addToDatabaseFromModel(){
 
-
         $type = $_REQUEST['model_type'] ?? '';
         $user_params = $this->userParams();
-
         
         switch ($type) {
-
             case 'users':
                 $existUser = $this->model->userByEmail($user_params['email']);
                 if (!$existUser) {
@@ -89,21 +89,15 @@ class AppController
                 }
                     $this->showView('add', ['type' => $type , 'message'=>'El email ya esta registrado']);
             break;
-
             case 'products':
-            
                 $params = $this->productParams();
-
                 $this->model->createProduct($params);
-
                 $this->showView('add', ['type' => $type , 'message'=>'Producto creado correctamente']);
-      
             break;
             default:
             $this->showView('404');
             break;
         }
-
     }
 
     private function showAddToDatabaseFromModel()
@@ -116,7 +110,6 @@ class AppController
     {
         $params = $this->productParams();
         $this->model->deleteProductByID($params['id']);
-
         $this->showView('adminProducts', ['productos' =>  $this->model->getProducts()]);
 
     }
@@ -171,8 +164,11 @@ class AppController
         $existUser = $this->model->userByEmail($user_params['email']);
 
         if (!$existUser || !$this->checkUserPass(base64_encode($user_params['password']), $existUser['password'])) {
+
             $this->showView('login', ['errmessage' => 'Correo o contraseña incorrecta']);
+
         } else {
+
             $this->handleSuccessfulAuthentication($existUser);
         }
     }
@@ -183,9 +179,11 @@ class AppController
         $_SESSION['userlog'] = $user;
 
         if ((int)$user['role'] === 1) {
-            $_SESSION['productos'] = $this->model->getProducts();
-            header('Location: Vista/dashboard.php');
+            header('Location: index.php?page=user-default&user_id=' . $user['id']);
+            exit;
+
         } else {
+
             header('Location: index.php?page=admin&user_id=' . $user['id'] . '&password=' . $user['password']);
         }
 
