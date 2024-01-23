@@ -1,5 +1,6 @@
 <?php
 require_once './Utils/validator.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ require_once './Utils/validator.php';
     <nav>
         <div>
             <a href="#">Inicio</a>
-            <a href="./?user-history">Mi historial de compras</a>
+            <a href="./?page=user-history&user_id=<?= $user_data['id']?>" >Mi historial de compras</a>
         </div>
         
         <div>
@@ -87,11 +88,17 @@ require_once './Utils/validator.php';
             let credit_number = document.getElementById('numeroTarjeta_' + idInput ).value
             let total = cantidad * precio;
 
+            var url = new URL(window.location.href);
+
+            // Obtener el valor del parámetro user_id
+            var userId = url.searchParams.get("user_id");
+
             let cartObj = {
                 pr_quantity: cantidad,
                 pr_price: precio,
                 pr_total: total,
-                pr_id: idInput
+                pr_id: parseInt(idInput.match(/\d+$/)[0], 10),
+                user_id : userId
             };
 
             if (credit_number === '' ||credit_number === null ||credit_number === ''){
@@ -112,13 +119,17 @@ require_once './Utils/validator.php';
 
             }else{
 
+               
 
                   // Construir la URL con parámetros
-                  let url = `http://localhost/esteban/Controlador/ApiController.php?${new URLSearchParams(cartObj).toString()}`;
+                let url = `http://localhost/esteban/Controlador/ApiController.php?${new URLSearchParams(cartObj).toString()}`;
                 // Realizar la solicitud GET
                 let response = await fetch(url);
                 // Parsear la respuesta JSON
-                let responseData = await response.json();
+                //let responseData = await response.json();
+                console.log(response)
+
+        
 
 
                 let timerInterval;

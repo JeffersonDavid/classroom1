@@ -67,8 +67,13 @@ class AppController
                     break;
 
             case 'buy-product':
-                
                     $this->showView('dashboard', ['productos' => $this->model->getProducts() ]);
+                    break;
+            case 'user-history':
+                    
+                    $user_data = $this->userParams();
+                   
+                    $this->showView('user_history', ['data' => $this->model->productsByUser( $user_data['user_id']) ]);
                     break;
             
             default:

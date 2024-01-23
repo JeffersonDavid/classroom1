@@ -1,0 +1,12 @@
+[2024-01-23 13:26:29] [INFO] Inicia petición
+[2024-01-23 13:26:29] [INFO] Datos recibidos: {"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4","user_id":"18"}
+[2024-01-23 13:26:29] [INFO] ************** insert realizado ********** 
+[2024-01-23 13:26:29] [INFO] Respuesta enviada: {"success":true,"mensaje":"Par\u00e1metros recibidos correctamente","datos":{"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4"},"log":{"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4","user_id":"18"}}
+[2024-01-23 13:27:49] [INFO] Inicia petición
+[2024-01-23 13:27:49] [INFO] Datos recibidos: {"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4","user_id":"18"}
+[2024-01-23 13:27:49] [INFO] ************** insert realizado ********** 
+[2024-01-23 13:27:49] [INFO] Respuesta enviada: {"success":true,"mensaje":"Par\u00e1metros recibidos correctamente","datos":{"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4"},"log":{"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4","user_id":"18"}}
+[2024-01-23 13:28:26] [INFO] Inicia petición
+[2024-01-23 13:28:26] [INFO] Datos recibidos: {"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4","user_id":"18"}
+[2024-01-23 13:28:26] [INFO] ************** insert realizado ********** 
+[2024-01-23 13:28:26] [INFO] Respuesta enviada: {"success":true,"mensaje":"Par\u00e1metros recibidos correctamente","datos":{"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4"},"log":{"pr_quantity":"2","pr_price":"3","pr_total":"6","pr_id":"4","user_id":"18"}}

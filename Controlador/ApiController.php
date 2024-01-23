@@ -1,29 +1,31 @@
 <?php
 
+require_once  '../Conexion.php';
+require_once  '../Modelo/App.php';
+
 class Logger {
-
     private $logFile;
-
     public function __construct($logFile) {
         $this->logFile = $logFile;
     }
-
     public function logInfo($message) {
         $logEntry = "[" . date('Y-m-d H:i:s') . "] [INFO] " . $message . PHP_EOL;
         $this->writeToLog($logEntry);
     }
-
     private function writeToLog($logEntry) {
         file_put_contents($this->logFile, $logEntry, FILE_APPEND | LOCK_EX);
     }
 }
 
+
 class ApiController {
 
     private $logger;
+    private $databaseService;
 
-    public function __construct(Logger $logger) {
+    public function __construct(Logger $logger, DatabaseService $databaseService) {
         $this->logger = $logger;
+        $this->databaseService = $databaseService;
     }
 
     public function procesarCarrito() {
@@ -40,13 +42,7 @@ class ApiController {
         foreach ($parametrosEsperados as $parametro) {
             if (!isset($datos[$parametro])) {
                 // Parámetro faltante, construir la respuesta de error
-                $respuesta = [
-                    'success' => false,
-                    'mensaje' => 'Falta el parámetro obligatorio: ' . $parametro,
-                    'data' => $datos
-                ];
-
-                $this->responderJson($respuesta);
+                $this->responderError('Falta el parámetro obligatorio: ' . $parametro, $datos);
                 return;
             }
         }
@@ -57,8 +53,16 @@ class ApiController {
         $total = $datos['pr_total'];
         $idProducto = $datos['pr_id'];
 
-        // Puedes realizar acciones adicionales con los parámetros, si es necesario
-        // ...
+        try {
+            $conn = $conn = new DatabaseService();
+            $app_model = new App($conn);
+            $app_model->insertUserBuyTransaction($datos);
+        } catch (\Throwable $th) {
+            $this->responderError($th->getMessage(), $datos);
+            return;
+        }
+
+        $this->logger->logInfo('************** insert realizado ********** ');
 
         // Construir el array con la respuesta
         $respuesta = [
@@ -69,7 +73,8 @@ class ApiController {
                 'pr_price' => $precio,
                 'pr_total' => $total,
                 'pr_id' => $idProducto
-            ]
+            ],
+            'log' => $datos
         ];
 
         $this->responderJson($respuesta);
@@ -80,12 +85,22 @@ class ApiController {
         echo json_encode($data);
         $this->logger->logInfo('Respuesta enviada: ' . json_encode($data));
     }
+
+    private function responderError($mensaje, $datos) {
+        $respuesta = [
+            'success' => false,
+            'mensaje' => $mensaje,
+            'data' => $datos
+        ];
+        $this->responderJson($respuesta);
+    }
 }
 
-// Uso del logger
+// Uso del logger y DatabaseService
 $logger = new Logger('log.txt');
-// Crear una instancia del controlador con el logger
-$apiController = new ApiController($logger);
+$databaseService = new DatabaseService();
+// Crear una instancia del controlador con el logger y DatabaseService
+$apiController = new ApiController($logger, $databaseService);
 // Llamar al método para procesar el carrito
 $apiController->procesarCarrito();
-?>
+

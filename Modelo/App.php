@@ -186,6 +186,46 @@ class App {
         }
     }
 
+    public function insertUserBuyTransaction( array $datos ){
+
+        $cantidad = $datos['pr_quantity'];
+        $total = $datos['pr_total'];
+        $idProducto = $datos['pr_id'];
+        $user_id = $datos['user_id'];
+
+        $sql = "INSERT INTO historial_compras (usuario_id, producto_id, cantidad, precio_total, fecha_compra) VALUES (:usuario_id, :producto_id, :cantidad, :precio_total, :fecha_compra)";
+
+        // Preparar la sentencia SQL
+        $stmt = $this->databaseService->connection->prepare($sql);
+
+        // Vincular los valores a los marcadores de posición
+        $stmt->bindParam(':usuario_id', $user_id); // Asumo que $user_id es una variable definida
+        $stmt->bindValue(':producto_id', $idProducto); // Cambié a bindValue para aceptar una expresión
+        $stmt->bindParam(':cantidad', $cantidad);
+        $stmt->bindParam(':precio_total', $total); 
+        $stmt->bindParam(':fecha_compra', date('Y-m-d H:i:s'));
+
+        // Ejecutar la sentencia SQL
+        $stmt->execute();
+
+
+    }
+
+    public function productsByUser( int $user_id )  {
+
+        $stmt = $this->databaseService->connection->prepare("SELECT * FROM historial_compras WHERE usuario_id = :usuario_id");
+            $stmt->bindParam(':usuario_id', $user_id);
+                $stmt->execute();
+                    $primerResultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($primerResultado !== false) {
+            return $primerResultado;
+        }
+       
+        return null;
+
+    }
+
 }
  
 
