@@ -65,6 +65,11 @@ class AppController
             case 'user-default':
                     $this->showView('dashboard', ['productos' => $this->model->getProducts() ]);
                     break;
+
+            case 'buy-product':
+                
+                    $this->showView('dashboard', ['productos' => $this->model->getProducts() ]);
+                    break;
             
             default:
                 $this->showView('login');
