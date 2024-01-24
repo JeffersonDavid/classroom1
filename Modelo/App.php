@@ -155,7 +155,7 @@ class App {
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':name', $nombre, PDO::PARAM_STR);
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+        $stmt->bindValue(':password', base64_encode($password), PDO::PARAM_STR);
         $stmt->bindValue(':role', $role, PDO::PARAM_STR);
 
         $success = $stmt->execute();
@@ -211,20 +211,17 @@ class App {
 
     }
 
-    public function productsByUser( int $user_id )  {
-
+    public function productsByUser(int $user_id) {
         $stmt = $this->databaseService->connection->prepare("SELECT * FROM historial_compras WHERE usuario_id = :usuario_id");
-            $stmt->bindParam(':usuario_id', $user_id);
-                $stmt->execute();
-                    $primerResultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->bindParam(':usuario_id', $user_id);
+        $stmt->execute();
+    
+        // Obtener todos los resultados en forma de arreglo asociativo
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($primerResultado !== false) {
-            return $primerResultado;
-        }
-       
-        return null;
-
+        return $resultados;
     }
+    
 
 }
  
