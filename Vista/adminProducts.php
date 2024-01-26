@@ -39,9 +39,9 @@
                     <td><?= $product['precio'] ?></td>
                     <td><?= $product['descripcion'] ?></td>
                     <td>
-                        <a class="button" href="./?page=show-edit-product&product_id=<?= $product['id'] ?>">Editar producto</a>
-                        <a class='buttonred' href='./index.php?page=product-delete&product_id=<?= $product['id'] ?>'> Borrar </a>
-                        <a class='buttonblue' href='./index.php?page=show-add&model_type=products'> Crear </a>
+                        <a class="button" href="./?page=show-edit-product&product_id=<?= $product['id'] ?>"><span> Editar<i class='fas fa-plus add-icon'> ✎ </i> </span> </a>
+                        <a class='buttonred' href='./index.php?page=product-delete&product_id=<?= $product['id'] ?>'> <span> Borrar <i class='fas fa-plus add-icon'> ⨷ </i> </span> </a>
+                        <a class='buttonblue' href='./index.php?page=show-add&model_type=products'> <span> Añadir  <i class='fas fa-plus add-icon'> ✚ </i>  </span> </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

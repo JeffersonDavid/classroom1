@@ -1,5 +1,4 @@
 <?php
-require 'Conexion.php';
 
 class AppController
 {

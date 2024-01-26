@@ -110,3 +110,13 @@ body {
     font-weight: bold;
     text-align: center;
 }
+
+a.button,a.buttonred,a.buttonblue{
+    padding: 10px;
+    margin: 3px;
+    }
+    
+    td{
+        padding: 20px;
+    }
+    

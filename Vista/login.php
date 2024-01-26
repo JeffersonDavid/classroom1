@@ -6,7 +6,7 @@
     <style type="text/css">
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #989898;
             margin: 0;
             padding: 0;
             display: flex;
@@ -103,7 +103,7 @@
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" placeholder="Escriba aquí su contraseña" required>
 
-            <input type="submit" id="acceso" name="acceso" value="Acceder">
+            <input  style='font-size:20px' type="submit" id="acceso" name="acceso" value="Acceder">
             <a href="index.php?page=register">Registrarse</a>
         </fieldset>
     </form>

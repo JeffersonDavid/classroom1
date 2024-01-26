@@ -10,6 +10,9 @@ require './Utils/validator.php'
     <title>Adminstrador</title>
     <link rel="stylesheet" href="./public/style.css">
     <link rel="stylesheet" href="./public/popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-rlR5ePZ6p5vNcFp2jNII6JSwIq3l2pF5OKRAFJ3S82mN4G2yDtVzYzFa38k34+4PT5HsnVjIcSef4RflqWafQ==" crossorigin="anonymous" />
+
+    
 </head>
 <body>
 
@@ -55,9 +58,9 @@ require './Utils/validator.php'
 
                     echo"<td> 
 
-                            <a class='button' href='./index.php?page=show-user-edit&user_id=" . $user['id'] . "'> Editar </a>
-                            <a class='buttonred' href='./index.php?page=user-delete&user_id=" . $user['id'] . "'> Borrar </a>
-                            <a class='buttonblue' href='./index.php?page=show-add&model_type=users'> Añadir </a>
+                            <a class='button' href='./index.php?page=show-user-edit&user_id=" . $user['id'] . "'><span> Editar<i class='fas fa-plus add-icon'> ✎ </i> </span> </a>
+                            <a class='buttonred' href='./index.php?page=user-delete&user_id=" . $user['id'] . "'> <span> Borrar <i class='fas fa-plus add-icon'> ⨷ </i> </span> </a>
+                            <a class='buttonblue' href='./index.php?page=show-add&model_type=users'> <span> Añadir  <i class='fas fa-plus add-icon'> ✚ </i>  </span> </a>
 
 
                          </td>";

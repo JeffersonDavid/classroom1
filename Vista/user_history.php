@@ -26,6 +26,15 @@ require_once './Utils/validator.php';
     </div>
 </nav>
 
+<?php 
+    if (empty($data)){
+
+        echo '<h3 class="m-5">Aún no tiene compras registradas en su historial </h3>';
+        die();
+    } 
+?>
+
+
 <div class="container mt-5">
     <h3>Tabla de Datos</h3>
     <div class="table-responsive">
@@ -41,6 +50,7 @@ require_once './Utils/validator.php';
                 <?php foreach ($data as $fila) : ?>
                     <tr>
                         <?php foreach ($fila as $valor) : ?>
+                            
                             <td><?= $valor ?></td>
                         <?php endforeach; ?>
                     </tr>

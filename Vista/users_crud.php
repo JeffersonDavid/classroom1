@@ -37,7 +37,7 @@ require './Utils/validator.php';
     </div>
 <?php endif; ?>
 
-<form action="?page=user-edit&user_id=<?= isset($user_data_['id']) ? $user_data_['id'] : 'undefined'; ?>" method="post" style="margin-top:5%">
+<form name="users_form" onsubmit="return validatePass('users_form')" action="?page=user-edit&user_id=<?= isset($user_data_['id']) ? $user_data_['id'] : 'undefined'; ?>" method="post" style="margin-top:5%">
     <h2>Editar Usuario</h2>
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($user_data_['id']); ?>">
 
@@ -68,5 +68,7 @@ require './Utils/validator.php';
 </form>
 
 <script src="./public/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

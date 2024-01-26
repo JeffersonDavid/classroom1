@@ -5,7 +5,7 @@
         <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #989898;
             margin: 0;
             padding: 0;
             display: flex;
@@ -66,7 +66,7 @@
         <?php echo isset($errmessage) ? '<div style="padding:10px"><span style="background:red;color:white">'.$errmessage.'</span></div>' : ''; ?>
         <?php echo isset($message) ? '<div style="padding:10px"><span style="background:green;color:white">'.$message.'</span></div>' : ''; ?>
 
-        <form action="index.php?page=create/user" method="post">
+        <form name="users_form" onsubmit="return validatePass('users_form')" action="index.php?page=create/user" method="post">
         <fieldset>
             <legend>Formulario de Registro</legend>
             <label for="name">Nombre:</label>
@@ -78,11 +78,13 @@
             <label for="pass1">Contraseña:</label>
             <input type="password" id="pass1" name="password" placeholder="Escriba aquí su contraseña" required>
 
-            <input type="submit" name="Registrarse" value="Registrarse">
+            <input  style='font-size:20px' type="submit" name="Registrarse" value="Registrarse">
 
             <a href="index.php">Menú inicio</a>
         </fieldset>
     </form>
-            </div> 
+        <script src="./public/js/app.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </div> 
     </body>
 </html>

@@ -13,3 +13,38 @@ function aplicarFadeOut() {
     }
 }
 
+function validatePass(form){
+
+
+    var password = document.forms[form]["password"].value;
+
+    if (password == '' || password == null) {
+        mostrarError("Introduce una contraseña");
+        return false;
+      }
+
+      if (password.length <= 4) {
+        mostrarError("La contraseña debe tener más de 4 caracteres");
+        return false;
+      }
+
+      if (!/[A-Z]/.test(password)) {
+        mostrarError("La contraseña debe contener al menos una letra mayúscula");
+        return false;
+      }
+
+      // Si la validación pasa, puedes continuar con el envío del formulario
+      return true;
+   
+
+}
+
+
+function mostrarError(mensaje) {
+    Swal.fire({
+      title: 'Error',
+      text: mensaje,
+      icon: 'error',
+      confirmButtonText: 'Volver'
+    });
+  }
