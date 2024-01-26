@@ -157,7 +157,14 @@ class AppController
     private function handleUserCreation()
     {
         $user_params = $this->userParams();
+         // Verificar que los campos necesarios no estén vacíos
+        if (empty($user_params['name']) || empty($user_params['email']) || empty($user_params['password'])) {
+            $this->showView('register', ['errmessage' => 'Por favor, complete todos los campos']);
+            return;
+        }
+       
         $existUser = $this->model->userByEmail($user_params['email']);
+        
 
         if (!$existUser) {
             $this->model->createUser($user_params['name'], $user_params['email'], $user_params['password']);
