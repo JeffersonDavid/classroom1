@@ -29,6 +29,7 @@ require_once './Utils/validator.php';
 
     <h3 style="margin:10px;">Productos en stock</h3>
 
+    <div  role="main">
     <ul>
         <?php foreach ($productos as $producto): ?>
             <?php
@@ -75,7 +76,7 @@ require_once './Utils/validator.php';
 
         <?php endforeach; ?>
     </ul>
-
+    </div>
     <script>
 
         window.addEventListener('beforeunload', function() { localStorage.clear(); });

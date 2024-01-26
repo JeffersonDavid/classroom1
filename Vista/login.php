@@ -94,7 +94,7 @@
     <?php echo isset($errmessage) ? '<div class="error-message">'.$errmessage.'</div>' : ''; ?>
     <?php echo isset($message) ? '<div class="success-message">'.$message.'</div>' : ''; ?>
 
-    <form action="index.php?page=authenticate" method="post">
+    <form id="loginform" action="index.php?page=authenticate" method="post">
         <fieldset>
             <legend>Acceso online</legend>
             <label for="email">Nombre:</label>
@@ -107,6 +107,7 @@
             <a href="index.php?page=register">Registrarse</a>
         </fieldset>
     </form>
+    <p style="visibility: hidden; position:absolute" aria-describedby="loginform">Acceso a la web a traves de login</p>
 
 </div>
 

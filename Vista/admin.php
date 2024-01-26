@@ -20,7 +20,7 @@ require './Utils/validator.php'
 
 <div style='padding: 10px; width:90%'>
 
-<nav>
+<nav id="navegacion">
         <div>
         <a href="./?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>">Gestión de usuarios</a>
         <a href="./?page=admin&user_id=<?= $user_data['id'] ?>&password=<?= $user_data['password'] ?>&adminPage=products">Gestión de productos</a>
@@ -31,13 +31,14 @@ require './Utils/validator.php'
             <a class="logout-btn" href="./Vista/logout.php">Logout</a>
         </div>
 </nav>
+<p style="visibility: hidden; position:absolute" aria-describedby="navegacion">Menu de navegacion con enlaces a gestion de productos & usuarios</p>
 
 
 
 
 <div style="padding: 10px;">
 <h3>GESTION DE USUARIOS</h3>
-    <table>
+    <table role="main">
         <thead>
             <tr>
                 <th>Nombre</th>

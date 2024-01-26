@@ -21,7 +21,7 @@
     </div>
 </nav>
 
-<div style="padding: 10px; width:90%">
+<div style="padding: 10px; width:90%"  role="main">
     <h3 style="margin-top:7%">GESTION DE PRODUCTOS</h3>
     <table>
         <thead>

@@ -66,7 +66,7 @@
         <?php echo isset($errmessage) ? '<div style="padding:10px"><span style="background:red;color:white">'.$errmessage.'</span></div>' : ''; ?>
         <?php echo isset($message) ? '<div style="padding:10px"><span style="background:green;color:white">'.$message.'</span></div>' : ''; ?>
 
-        <form name="users_form" onsubmit="return validatePass('users_form')" action="index.php?page=create/user" method="post">
+        <form id='loginform' name="users_form" onsubmit="return validatePass('users_form')" action="index.php?page=create/user" method="post">
         <fieldset>
             <legend>Formulario de Registro</legend>
             <label for="name">Nombre:</label>
@@ -83,6 +83,9 @@
             <a href="index.php">Menú inicio</a>
         </fieldset>
     </form>
+
+        <p style="visibility: hidden; position:absolute" aria-describedby="loginform">Acceso a la web a traves de login</p>
+
         <script src="./public/js/app.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </div> 
